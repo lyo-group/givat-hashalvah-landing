@@ -58,6 +58,10 @@ section{padding:var(--gap) 0}
 .top a{display:block}
 .top img{width:150px;height:auto}
 .top .reg{color:var(--ink);font-size:14px;font-weight:700;text-underline-offset:4px;white-space:nowrap}
+/* The language switch sits just before the register link */
+.top .links{display:flex;align-items:center;gap:22px}
+.top .lang{color:var(--ink);font-size:14px;text-decoration:none;white-space:nowrap}
+.top .lang:hover{text-decoration:underline;text-underline-offset:4px}
 
 /* Hero: centered, text over the sky, the project below it */
 .hero{position:relative;min-height:min(78svh,760px);padding:0;color:#fff;text-align:center;background:#40505a;isolation:isolate}
@@ -195,7 +199,10 @@ footer.site p+p{margin-top:10px}
 <header class="top">
   <div class="wrap">
     <a href="#top" aria-label="Givat Hashalvah"><img src="assets/logo-black.svg" alt="Givat Hashalvah" width="168" height="40"></a>
-    <a class="reg" href="#details">Register interest</a>
+    <nav class="links">
+      <a class="lang" href="he/" lang="he" hreflang="he" data-keep-query>עברית</a>
+      <a class="reg" href="#details">Register interest</a>
+    </nav>
   </div>
 </header>
 
@@ -333,6 +340,9 @@ footer.site p+p{margin-top:10px}
   var text = 'Hi, I want to learn more about Givat Hashalvah (' + tag + ')';
   var wa = 'https://wa.me/972533684289?text=' + encodeURIComponent(text);
   document.querySelectorAll('[data-wa]').forEach(function (a) { a.href = wa; });
+
+  /* The language switch keeps the link's tags (utm_*), so the form and the WhatsApp tag still know the outlet. */
+  document.querySelectorAll('[data-keep-query]').forEach(function (a) { a.href = a.getAttribute('href') + location.search; });
 
   /* 3. The register button on phones: show it once the first button is out of view, hide it at the form. */
   var bar = document.getElementById('bar');
