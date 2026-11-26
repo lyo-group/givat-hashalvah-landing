@@ -79,9 +79,12 @@ section{padding:var(--gap) 0}
 /* Families and the form, side by side */
 .signup{background:var(--sand)}
 .signup .grid{display:grid;gap:28px}
-.voices h3{margin-bottom:6px}
-.voices blockquote{padding:18px 0;border-bottom:1px solid var(--line)}
-.voices blockquote:last-child{border-bottom:0;padding-bottom:0}
+.voices{min-width:0}
+.voices h3{margin-bottom:14px}
+/* On a phone the quotes sit in one row that swipes sideways (the next one peeks in), so they do not push the form down */
+.quotes{display:flex;gap:20px;margin:0 calc(-1 * var(--pad));padding:0 var(--pad);overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 var(--pad);scrollbar-width:none}
+.quotes::-webkit-scrollbar{display:none}
+.voices blockquote{flex:0 0 84%;padding-top:16px;border-top:1px solid var(--line);scroll-snap-align:start}
 .voices blockquote p{font-size:18px;line-height:1.5}
 .voices footer{margin-top:10px;font-size:14px;color:var(--muted)}
 .voices footer b{color:var(--ink);font-size:15px}
@@ -168,7 +171,11 @@ footer.site p+p{margin-top:10px}
   .rooms{margin-top:48px;padding:0;overflow:visible}
   .rooms img{flex:1 1 0;width:50%;min-width:0}
   .signup .grid{grid-template-columns:5fr 6fr;gap:56px;align-items:start}
-  .voices{position:sticky;top:32px}
+  /* On a computer the quotes are a list beside the form */
+  .voices h3{margin-bottom:6px}
+  .quotes{display:block;margin:0;padding:0;overflow:visible}
+  .voices blockquote{padding:18px 0;border-top:0;border-bottom:1px solid var(--line)}
+  .voices blockquote:last-child{border-bottom:0;padding-bottom:0}
   .formcard{padding:40px 40px 34px}
   footer.site{padding-bottom:36px}
   .wa-float{right:24px;bottom:24px}
@@ -226,6 +233,7 @@ footer.site p+p{margin-top:10px}
   <div class="wrap grid">
     <div class="voices">
       <h3>Families who chose it</h3>
+      <div class="quotes">
       <blockquote>
         <p>"It's close to Yerushalayim and geared towards family life. The community is filled with big open spaces, and I'll feel comfortable with my kids running around outside."</p>
         <footer><b>Eli Spitzer</b>, future resident</footer>
@@ -234,6 +242,19 @@ footer.site p+p{margin-top:10px}
         <p>"It's a community geared toward our lifestyle, with the kind of clarity and belonging we've been looking for."</p>
         <footer><b>Isaac and Shulamis Rubinfeld</b>, Lakewood, NJ, future residents</footer>
       </blockquote>
+      <blockquote>
+        <p>"From the first conversation, the Givat Hashalvah team made the process feel clear, organized and genuinely supportive. Buying real estate in Eretz Yisroel can come with its challenges, but here it felt smooth and reassuring."</p>
+        <footer><b>Aryeh Simon</b>, Beitar Illit, CEO and Partner, Adar Global</footer>
+      </blockquote>
+      <blockquote>
+        <p>"I wanted a Chutznik-style shul, English shiurim, warmth and good energy, not fancy cars."</p>
+        <footer><b>Mel Lieber</b>, founding community member</footer>
+      </blockquote>
+      <blockquote>
+        <p>"We're still attached to Yerushalayim by the hip."</p>
+        <footer><b>Eli Benzaquen</b>, future resident</footer>
+      </blockquote>
+      </div>
     </div>
     <div class="formcard">
       <h2>Take your next step</h2>
